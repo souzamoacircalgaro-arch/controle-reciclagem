@@ -1,136 +1,111 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Coleta Seletiva Pro</title>
+    <title>Coleta Pro</title>
     <script src="https://tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
 </head>
-<body class="bg-[#F2F2F7] min-h-screen flex items-center justify-center font-sans">
+<body class="bg-gray-100 min-h-screen font-sans flex items-center justify-center">
 
-    <div class="w-full max-w-md bg-white min-h-screen sm:min-h-0 sm:rounded-[40px] shadow-2xl overflow-hidden flex flex-col">
+    <div class="w-full max-w-md bg-white min-h-screen shadow-2xl flex flex-col overflow-hidden">
         
-        <!-- Header com Gradiente Moderno -->
-        <div class="bg-gradient-to-br from-green-500 to-emerald-700 p-8 text-white shadow-lg">
-            <div class="flex justify-between items-center mb-2">
-                <span class="text-xs font-bold uppercase tracking-widest opacity-80">Painel de Controle</span>
-                <i class="fas fa-leaf text-xl"></i>
-            </div>
-            <h1 class="text-3xl font-extrabold tracking-tight text-white">Gestão de Coleta</h1>
-            <p class="text-green-100 text-sm mt-1 font-medium" id="exibir_data"></p>
+        <!-- Cabeçalho com Gradiente -->
+        <div class="bg-gradient-to-r from-green-600 to-emerald-700 p-8 text-white shadow-lg text-center">
+            <h1 class="text-3xl font-extrabold tracking-tight">Gestão de Coleta</h1>
+            <p class="text-green-100 text-sm mt-2 opacity-90" id="exibir_data"></p>
         </div>
 
-        <!-- Conteúdo do Formulário -->
+        <!-- Formulário Espaçado -->
         <div class="p-8 space-y-6 flex-grow">
             
             <!-- Equipe -->
-            <div class="group">
-                <label class="flex items-center text-xs font-bold text-gray-400 uppercase mb-2 ml-1 tracking-wider">
-                    <i class="fas fa-users mr-2 text-green-500"></i> Equipe Responsável
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-widest">
+                    <i class="fas fa-users mr-2 text-green-500"></i>Equipe Responsável
                 </label>
                 <input type="text" id="equipe" placeholder="Nome da equipe..." 
-                       class="w-full p-4 bg-gray-50 border-2 border-transparent rounded-2xl focus:border-green-500 focus:bg-white outline-none transition-all duration-300 shadow-sm">
+                       class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:border-green-500 outline-none transition-all shadow-sm">
             </div>
 
-            <!-- Produto -->
-            <div class="group">
-                <label class="flex items-center text-xs font-bold text-gray-400 uppercase mb-2 ml-1 tracking-wider">
-                    <i class="fas fa-box-open mr-2 text-green-500"></i> Detalhe do Produto
+            <!-- Detalhe do Produto -->
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-widest">
+                    <i class="fas fa-box mr-2 text-green-500"></i>Detalhe do Produto
                 </label>
                 <input type="text" id="produto" placeholder="Papelão, PET, Alumínio..." 
-                       class="w-full p-4 bg-gray-50 border-2 border-transparent rounded-2xl focus:border-green-500 focus:bg-white outline-none transition-all duration-300 shadow-sm">
+                       class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:border-green-500 outline-none transition-all shadow-sm">
             </div>
 
-            <!-- Peso e Qtd em Grid -->
+            <!-- Qtd e Peso -->
             <div class="grid grid-cols-2 gap-4">
-                <div class="group">
-                    <label class="flex items-center text-xs font-bold text-gray-400 uppercase mb-2 ml-1 tracking-wider">
-                        <i class="fas fa-layer-group mr-2 text-green-500"></i> Qtd (un)
-                    </label>
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-widest">Qtd (un)</label>
                     <input type="number" id="quantidade" placeholder="0" 
-                           class="w-full p-4 bg-gray-50 border-2 border-transparent rounded-2xl focus:border-green-500 focus:bg-white outline-none transition-all duration-300 shadow-sm">
+                           class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none shadow-sm">
                 </div>
-                <div class="group">
-                    <label class="flex items-center text-xs font-bold text-gray-400 uppercase mb-2 ml-1 tracking-wider">
-                        <i class="fas fa-weight-hanging mr-2 text-green-500"></i> Peso (kg)
-                    </label>
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-widest">Peso (kg)</label>
                     <input type="number" step="0.01" id="peso" placeholder="0.00" 
-                           class="w-full p-4 bg-gray-50 border-2 border-transparent rounded-2xl focus:border-green-500 focus:bg-white outline-none transition-all duration-300 shadow-sm font-bold text-green-700">
+                           class="w-full p-4 bg-gray-50 border-2 border-gray-100 rounded-2xl outline-none shadow-sm font-bold text-green-700">
                 </div>
             </div>
 
-            <!-- Tipo de Resíduo (Select Estilizado) -->
-            <div class="group">
-                <label class="flex items-center text-xs font-bold text-gray-400 uppercase mb-2 ml-1 tracking-wider">
-                    <i class="fas fa-recycle mr-2 text-green-500"></i> Tipo de Resíduo
-                </label>
-                <div class="relative">
-                    <select id="tipo_residuo" 
-                            class="w-full p-4 bg-green-50 border-2 border-green-100 rounded-2xl text-green-700 font-bold outline-none appearance-none cursor-pointer">
-                        <option value="Reciclável">♻️ Material Reciclável</option>
-                        <option value="Orgânico">🍎 Resíduo Orgânico</option>
-                    </select>
-                    <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-green-500">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
+            <!-- Tipo de Resíduo -->
+            <div>
+                <label class="block text-xs font-bold text-gray-400 uppercase mb-2 tracking-widest">Tipo de Resíduo</label>
+                <select id="tipo_residuo" 
+                        class="w-full p-4 bg-green-50 border-2 border-green-100 rounded-2xl text-green-700 font-bold outline-none appearance-none cursor-pointer">
+                    <option value="Reciclável">♻️ Material Reciclável</option>
+                    <option value="Orgânico">🍎 Resíduo Orgânico</option>
+                </select>
             </div>
 
-            <!-- Ações -->
+            <!-- Botões -->
             <div class="pt-6 space-y-4">
                 <button onclick="enviarDados()" id="btnEnviar" 
-                        class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-5 rounded-2xl shadow-xl shadow-green-200 active:scale-95 transition-all text-lg flex justify-center items-center gap-3">
-                    <i class="fas fa-paper-plane text-sm"></i> REGISTRAR COLETA
+                        class="w-full bg-green-600 hover:bg-green-700 text-white font-bold p-5 rounded-2xl shadow-xl shadow-green-100 active:scale-95 transition-all text-lg">
+                    REGISTRAR COLETA
                 </button>
                 
                 <button onclick="fecharDia()" 
-                        class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-4 rounded-2xl transition-all text-xs flex justify-center items-center gap-2">
-                    <i class="fas fa-file-export text-xs text-gray-400"></i> FECHAR DIA E GERAR RELATÓRIO
+                        class="w-full bg-gray-800 text-gray-300 font-bold p-4 rounded-2xl transition-all text-xs">
+                    FECHAR DIA E GERAR RELATÓRIO
                 </button>
             </div>
 
-            <div id="status" class="text-center text-sm font-bold mt-2 h-6"></div>
+            <div id="status" class="text-center text-sm font-bold mt-4"></div>
         </div>
     </div>
 
     <script>
-        // Data e Hora Automática formatada
         const hoje = new Date();
-        const opcoesData = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-        document.getElementById('exibir_data').innerText = hoje.toLocaleDateString('pt-BR', opcoesData);
+        document.getElementById('exibir_data').innerText = hoje.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
         function enviarDados() {
             const status = document.getElementById('status');
             const equipe = document.getElementById('equipe').value;
-            const btn = document.getElementById('btnEnviar');
             
             if(!equipe) {
                 status.className = "text-red-500 italic";
-                status.innerText = "Por favor, informe a equipe responsável.";
+                status.innerText = "⚠️ Informe a equipe responsável.";
                 return;
             }
             
-            btn.disabled = true;
             status.className = "text-blue-500 animate-pulse";
-            status.innerText = "⏳ Sincronizando com a planilha...";
+            status.innerText = "⏳ Sincronizando dados...";
             
-            // Simulação de envio com efeito visual
             setTimeout(() => {
-                status.className = "text-green-600 font-bold";
-                status.innerText = "✅ Dados registrados com sucesso!";
-                
-                // Limpeza suave dos campos
-                ['produto', 'peso', 'quantidade'].forEach(id => document.getElementById(id).value = '');
-                
-                setTimeout(() => { status.innerText = ""; btn.disabled = false; }, 3000);
+                status.className = "text-green-600";
+                status.innerText = "✅ Registrado com sucesso!";
+                document.getElementById('produto').value = '';
+                document.getElementById('peso').value = '';
             }, 1500);
         }
 
         function fecharDia() {
-            if(confirm("Deseja consolidar os dados e enviar o relatório PDF para seu e-mail?")) {
-                alert("Processando relatório... Verifique seu e-mail em alguns minutos.");
-            }
+            alert("Relatório solicitado!");
         }
     </script>
 </body>
