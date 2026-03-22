@@ -3,100 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Recicla Pro 2026</title>
+    <title>Gestão de Coleta Pro</title>
     <script src="https://tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        body { font-family: -apple-system, system-ui, sans-serif; background-color: #f0f4f8; }
-        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 2.5rem; border: 1px solid rgba(255, 255, 255, 0.4); }
-        .ios-input { height: 60px; border-radius: 1.2rem; border: 2px solid transparent; background: #f1f5f9; padding: 0 1.2rem; font-size: 1.1rem; font-weight: 600; transition: 0.3s; width: 100%; outline: none; text-align: center; }
-        .ios-input:focus { border-color: #22c55e; background: white; box-shadow: 0 0 15px rgba(34, 197, 94, 0.1); }
-        .btn-primary { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border-radius: 1.5rem; height: 65px; font-weight: 800; font-size: 1.2rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px; box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4); transition: 0.2s; border: none; }
-        .btn-primary:active { transform: scale(0.96); }
-        .recycle-hero { font-size: 70px; color: #10b981; filter: drop-shadow(0 5px 15px rgba(16, 185, 129, 0.2)); }
+        body { font-family: -apple-system, sans-serif; background-color: #f8fafc; }
+        /* Garante que o app ocupe a tela toda sem scroll lateral */
+        .app-container { width: 100%; max-width: 450px; margin: 0 auto; padding: 20px; }
+        /* Inputs com altura ideal para o toque (touch) */
+        input, select { height: 60px !important; border-radius: 16px !important; font-size: 1.1rem !important; text-align: center; border: 1px solid #e2e8f0 !important; }
+        input:focus { border-color: #10b981 !important; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1) !important; }
+        .btn-main { height: 65px; border-radius: 20px; font-size: 1.3rem; font-weight: 800; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.2s; }
+        .btn-main:active { transform: scale(0.96); }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-6">
+<body class="min-h-screen flex flex-col items-center">
 
-    <div class="w-full max-w-md space-y-8 flex flex-col items-center">
+    <div class="app-container space-y-6 flex flex-col items-center">
         
-        <!-- Header Centralizado com Ícone de Reciclagem -->
-        <div class="text-center space-y-4">
-            <div class="recycle-hero animate-[spin_15s_linear_infinite]">
-                <i class="fa-solid fa-recycle"></i>
+        <!-- Cabeçalho Centralizado -->
+        <header class="text-center pt-4 space-y-2 w-full">
+            <h1 class="text-4xl font-black text-slate-900 tracking-tighter italic uppercase">Gestão de Coleta</h1>
+            <div class="flex items-center justify-center gap-2 text-[10px] font-black text-emerald-600 tracking-[0.2em]">
+                <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse shadow-md"></span>
+                SISTEMA ATIVO
             </div>
-            <div class="space-y-1">
-                <h1 class="text-4xl font-black text-slate-900 tracking-tighter italic uppercase">Gestão de Coleta</h1>
-                <div class="flex items-center justify-center gap-2 text-xs font-bold text-emerald-600 tracking-[0.2em]">
-                    <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></span>
-                    SISTEMA ATIVO
-                </div>
-            </div>
-        </div>
+        </header>
 
-        <!-- Formulário Ampliado e Centralizado -->
-        <div class="w-full glass-card p-8 shadow-2xl space-y-5">
-            <div class="space-y-1">
-                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-4">Equipe Responsável</label>
-                <input type="text" id="equipe" placeholder="👤 Nome da Equipe" class="ios-input">
-            </div>
+        <!-- Formulário Responsivo -->
+        <main class="w-full bg-white p-6 rounded-[2.5rem] shadow-2xl border border-slate-50 space-y-4">
             
             <div class="space-y-1">
-                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-4">Detalhe do Produto</label>
-                <input type="text" id="produto" placeholder="📦 O que foi coletado?" class="ios-input">
+                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-3">Equipe Responsável</label>
+                <input type="text" id="equipe" placeholder="👤 Nome da Equipe" class="w-full bg-slate-50 outline-none transition-all font-bold">
             </div>
 
-            <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-1">
+                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-3">Detalhe do Produto</label>
+                <input type="text" id="produto" placeholder="📦 O que foi coletado?" class="w-full bg-slate-50 outline-none transition-all">
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 w-full">
                 <div class="space-y-1">
-                    <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-4">Peso (kg)</label>
-                    <input type="number" id="peso" placeholder="0.00" class="ios-input text-emerald-600 font-black">
+                    <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-3">Peso (kg)</label>
+                    <input type="number" id="peso" placeholder="0.00" class="w-full bg-slate-50 outline-none text-emerald-700 font-black">
                 </div>
                 <div class="space-y-1">
-                    <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-4">Tipo</label>
-                    <select id="tipo" class="ios-input bg-emerald-50 text-emerald-800 font-bold appearance-none cursor-pointer">
+                    <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-3">Tipo</label>
+                    <select id="tipo" class="w-full bg-emerald-50 text-emerald-800 font-bold border-none appearance-none cursor-pointer">
                         <option value="Reciclável">♻️ Reciclável</option>
                         <option value="Orgânico">🍎 Orgânico</option>
                     </select>
                 </div>
             </div>
-        </div>
+        </main>
 
-        <!-- Painel de Ações -->
-        <div class="w-full space-y-4 px-2">
-            <!-- Registro com Captura Automática de Hora -->
-            <button onclick="registrar()" class="btn-primary">
+        <!-- Ações Principais -->
+        <div class="w-full space-y-4">
+            <button onclick="registrar()" class="btn-main bg-[#10b981] text-white shadow-xl shadow-emerald-100 uppercase">
                 <i class="fa-solid fa-cloud-arrow-up text-2xl"></i>
-                ARQUIVAR REGISTRO
+                Arquivar Registro
             </button>
 
+            <!-- Botões Secundários em Grid -->
             <div class="grid grid-cols-2 gap-4">
-                <button onclick="location.reload()" class="h-[55px] bg-white text-slate-400 rounded-2xl font-bold flex items-center justify-center gap-2 border border-slate-200 shadow-sm text-sm uppercase">
-                    <i class="fa-solid fa-trash-can"></i> Limpar
+                <button onclick="location.reload()" class="h-12 bg-white border border-slate-200 text-slate-400 rounded-2xl font-bold flex items-center justify-center gap-2 text-xs uppercase tracking-widest">
+                    <i class="fa-solid fa-rotate-left"></i> Limpar
                 </button>
-                <button onclick="window.open('SEU_LINK_DA_PLANILHA', '_blank')" class="h-[55px] bg-sky-50 text-sky-600 rounded-2xl font-bold flex items-center justify-center gap-2 border border-sky-100 shadow-sm text-sm uppercase">
+                <button onclick="window.open('URL_DA_PLANILHA', '_blank')" class="h-12 bg-sky-50 border border-sky-100 text-sky-600 rounded-2xl font-bold flex items-center justify-center gap-2 text-xs uppercase tracking-widest">
                     <i class="fa-solid fa-table-list"></i> Planilha
                 </button>
             </div>
         </div>
 
-        <!-- Histórico (Logs Automáticos) -->
-        <div class="w-full pt-6 pb-10">
-            <h3 class="text-center text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-6">Logs de Postagem (Auto-Hora)</h3>
+        <!-- Histórico (Logs) -->
+        <section class="w-full pt-6 pb-10">
+            <h3 class="text-center text-[10px] font-black text-slate-300 uppercase tracking-[0.4em] mb-6">Logs de Postagem (Auto-Hora)</h3>
             <div id="historico" class="space-y-3">
-                <div class="text-center py-10 text-slate-300 italic font-bold text-sm">Aguardando primeira coleta...</div>
+                <div class="text-center py-10 text-slate-200 italic font-bold text-sm">Aguardando primeira coleta...</div>
             </div>
-        </div>
+        </section>
     </div>
 
     <script>
         function registrar() {
             const agora = new Date();
             const hora = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-            
             const equipe = document.getElementById('equipe').value;
             const peso = document.getElementById('peso').value;
             const tipo = document.getElementById('tipo').value;
-            const produto = document.getElementById('produto').value;
 
             if(!equipe || !peso) { alert("⚠️ Informe Equipe e Peso!"); return; }
 
@@ -104,22 +99,20 @@
             if(hist.innerText.includes("Aguardando")) hist.innerHTML = "";
             
             const item = `
-                <div class="flex justify-between items-center bg-white p-5 rounded-[1.5rem] shadow-sm border border-slate-100 animate-in fade-in slide-in-from-top duration-500">
+                <div class="flex justify-between items-center bg-white p-5 rounded-2xl shadow-sm border border-slate-100 animate-in fade-in slide-in-from-top duration-500">
                     <div class="flex flex-col">
-                        <span class="text-[10px] text-slate-300 font-black tracking-widest uppercase">${hora}</span>
-                        <span class="text-slate-700 font-extrabold text-sm">${equipe}</span>
+                        <span class="text-[10px] text-slate-300 font-black uppercase">${hora}</span>
+                        <span class="text-slate-700 font-extrabold text-xs uppercase">${equipe}</span>
                     </div>
                     <span class="text-emerald-600 font-black text-[10px] uppercase bg-emerald-50 px-3 py-1 rounded-full">${tipo}</span>
                     <span class="text-slate-900 font-black text-base">${peso}kg</span>
                 </div>`;
-            
             hist.innerHTML = item + hist.innerHTML;
             
-            // Limpa campos variáveis
+            // Limpa campos dinâmicos
             document.getElementById('produto').value = '';
             document.getElementById('peso').value = '';
-            
-            alert("✅ Arquivado com sucesso às " + hora);
+            alert("✅ Registro arquivado com sucesso às " + hora);
         }
     </script>
 </body>
