@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Coleta Pro Slim</title>
-    <!-- Frameworks de Estilo e Ícones -->
+    <!-- Bibliotecas de Estilo e Ícones -->
     <script src="https://tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         body { font-family: -apple-system, sans-serif; background-color: #f8fafc; }
-        /* Botões Slim e Elegantes */
-        .btn-slim { height: 52px; border-radius: 14px; font-size: 1rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; transition: 0.2s; border: 1.5px solid transparent; }
+        /* Botões Slim Profissionais */
+        .btn-slim { height: 54px; border-radius: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; transition: 0.2s; border: 1px solid transparent; }
         .btn-slim:active { transform: scale(0.97); opacity: 0.9; }
-        input, select { font-size: 1rem !important; height: 50px !important; border-radius: 12px !important; text-align: center; border: 1px solid #e2e8f0 !important; }
+        input, select { font-size: 1rem !important; height: 52px !important; border-radius: 14px !important; text-align: center; border: 1px solid #e2e8f0 !important; outline: none; }
+        input:focus { border-color: #10b981 !important; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); }
     </style>
 </head>
 <body class="flex flex-col items-center p-6 pt-10">
@@ -21,56 +22,53 @@
         
         <!-- Cabeçalho de Status -->
         <div class="text-center space-y-1">
-            <h1 class="text-2xl font-black text-slate-800 tracking-tight italic">Gestão de Coleta</h1>
-            <div class="flex items-center justify-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+            <h1 class="text-3xl font-black text-slate-900 tracking-tight italic">Gestão de Coleta</h1>
+            <div class="flex items-center justify-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
                 <span id="dot" class="w-2.5 h-2.5 bg-amber-400 rounded-full animate-pulse shadow-sm"></span>
                 <span id="status_text">Aguardando Registro</span>
             </div>
         </div>
 
-        <!-- Formulário de Entrada -->
-        <div class="w-full bg-white p-6 rounded-[2.5rem] shadow-xl border border-slate-50 space-y-3">
-            <input type="text" id="equipe" placeholder="Equipe Responsável" class="w-full bg-slate-50 border-none outline-none focus:ring-2 focus:ring-emerald-500 shadow-inner">
-            <input type="text" id="produto" placeholder="Detalhe do Produto" class="w-full bg-slate-50 border-none outline-none focus:ring-2 focus:ring-emerald-500 shadow-inner">
+        <!-- Formulário Centralizado -->
+        <div class="w-full bg-white p-6 rounded-[2.5rem] shadow-xl border border-slate-50 space-y-4">
+            <input type="text" id="equipe" placeholder="Equipe Responsável" class="w-full bg-slate-50 border-none shadow-inner">
+            <input type="text" id="produto" placeholder="Detalhe do Produto" class="w-full bg-slate-50 border-none shadow-inner">
             
             <div class="grid grid-cols-2 gap-3">
-                <input type="number" id="peso" placeholder="Peso (kg)" class="w-full bg-slate-50 border-none outline-none text-emerald-700 font-black shadow-inner">
-                <select id="tipo" class="w-full bg-emerald-50 text-emerald-800 font-bold border-none outline-none shadow-sm cursor-pointer">
+                <input type="number" id="peso" placeholder="Peso (kg)" class="w-full bg-slate-50 border-none text-emerald-700 font-black shadow-inner">
+                <select id="tipo" class="w-full bg-emerald-50 text-emerald-800 font-bold border-none shadow-sm cursor-pointer">
                     <option value="Reciclável">♻️ Reciclável</option>
                     <option value="Orgânico">🍎 Orgânico</option>
                 </select>
             </div>
         </div>
 
-        <!-- Painel de Ações (Design Slim) -->
+        <!-- Painel de Ações (Botões Slim) -->
         <div class="w-full space-y-3 px-1">
             
-            <!-- Botão Principal com Auto-Hora -->
             <button onclick="registrar()" class="btn-slim bg-slate-900 text-white shadow-lg">
                 <i class="fa-solid fa-cloud-arrow-up text-sky-400 text-lg"></i>
                 Arquivar Registro (Auto-Hora)
             </button>
 
-            <!-- Botões Secundários -->
             <div class="grid grid-cols-2 gap-3">
                 <button onclick="location.reload()" class="btn-slim bg-white border-slate-200 text-rose-500 hover:border-rose-300">
                     <i class="fa-solid fa-trash-can text-base"></i> Resetar
                 </button>
-                <button onclick="alert('CSV Gerado com Sucesso')" class="btn-slim bg-white border-slate-200 text-emerald-600 hover:border-emerald-300">
+                <button onclick="alert('CSV baixado')" class="btn-slim bg-white border-slate-200 text-emerald-600 hover:border-emerald-300">
                     <i class="fa-solid fa-file-csv text-base"></i> Baixar CSV
                 </button>
             </div>
 
-            <!-- Link Planilha Google -->
             <button onclick="window.open('https://google.com', '_blank')" class="btn-slim bg-white border-sky-200 text-sky-500 text-[10px] font-black uppercase tracking-widest mt-2">
-                <i class="fa-solid fa-table-columns text-base"></i> Acessar Planilha Google
+                <i class="fa-solid fa-table-list text-base"></i> Acessar Planilha Google
             </button>
         </div>
 
         <!-- Histórico Automático -->
         <div class="w-full pt-4">
-            <h3 class="text-center text-[10px] font-black text-slate-300 uppercase tracking-widest mb-4">Histórico de Postagem</h3>
-            <div id="historico" class="text-center py-6 text-slate-200 italic font-bold text-sm">
+            <h3 class="text-center text-[10px] font-black text-slate-300 uppercase tracking-widest mb-4">Histórico de Coleta</h3>
+            <div id="historico" class="text-center py-10 text-slate-200 italic font-bold text-sm">
                 Nenhum registro arquivado hoje
             </div>
         </div>
@@ -86,27 +84,27 @@
             const tipo = document.getElementById('tipo').value;
 
             if(!equipe || !peso) {
-                alert("⚠️ Erro: Informe Equipe e Peso!");
+                alert("⚠️ Preencha Equipe e Peso!");
                 return;
             }
 
-            // Atualiza Status de Conexão
             document.getElementById('dot').classList.replace('bg-amber-400', 'bg-emerald-500');
-            document.getElementById('status_text').innerText = "Sincronizado às " + hora;
+            document.getElementById('status_text').innerText = "Postado às " + hora;
 
-            // Injeta no Histórico Local
             const hist = document.getElementById('historico');
             if(hist.innerText.includes("Nenhum")) hist.innerHTML = "";
             
             const item = `
-                <div class="w-full flex justify-between items-center py-3 border-b border-slate-50 text-slate-500 font-bold text-xs px-2">
+                <div class="w-full flex justify-between items-center py-4 border-b border-slate-50 text-slate-500 font-bold text-xs px-2 animate-in slide-in-from-top duration-300">
                     <span class="text-slate-300 font-medium">${hora}</span>
                     <span class="text-emerald-600 font-black tracking-tight uppercase">${tipo}</span>
                     <span class="bg-emerald-50 px-2 py-1 rounded text-emerald-700">${peso}kg</span>
                 </div>`;
             hist.innerHTML = item + hist.innerHTML;
-
-            alert("✅ Registro Arquivado com Sucesso: " + hora);
+            
+            // Limpa campos para nova entrada
+            document.getElementById('produto').value = '';
+            document.getElementById('peso').value = '';
         }
     </script>
 </body>
