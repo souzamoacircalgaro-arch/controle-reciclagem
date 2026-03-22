@@ -3,73 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Coleta Pro Slim</title>
-    <!-- Bibliotecas de Estilo e Ícones -->
+    <title>Recicla Pro - Gestão</title>
     <script src="https://tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        body { font-family: -apple-system, sans-serif; background-color: #f8fafc; }
-        /* Botões Slim Profissionais */
-        .btn-slim { height: 54px; border-radius: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; transition: 0.2s; border: 1px solid transparent; }
-        .btn-slim:active { transform: scale(0.97); opacity: 0.9; }
-        input, select { font-size: 1rem !important; height: 52px !important; border-radius: 14px !important; text-align: center; border: 1px solid #e2e8f0 !important; outline: none; }
-        input:focus { border-color: #10b981 !important; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); }
+        body { font-family: -apple-system, sans-serif; background-color: #ffffff; }
+        .ios-input { background: #f2f2f7; border-radius: 1.2rem; border: 2px solid transparent; transition: 0.3s; height: 55px; padding-left: 1rem; font-weight: 600; width: 100%; outline: none; }
+        .ios-input:focus { border-color: #22c55e; background: white; }
+        .btn-main { background: #22c55e; color: white; border-radius: 1.5rem; height: 60px; font-weight: 800; font-size: 1.1rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.2s; box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.3); }
+        .btn-main:active { transform: scale(0.96); opacity: 0.9; }
+        .recycling-icon { font-size: 80px; color: #22c55e; filter: drop-shadow(0 4px 6px rgba(34, 197, 94, 0.2)); }
     </style>
 </head>
-<body class="flex flex-col items-center p-6 pt-10">
+<body class="flex flex-col items-center p-6 min-h-screen">
 
-    <div class="w-full max-w-md space-y-6 flex flex-col items-center">
+    <div class="w-full max-w-md space-y-8 flex flex-col items-center">
         
-        <!-- Cabeçalho de Status -->
-        <div class="text-center space-y-1">
-            <h1 class="text-3xl font-black text-slate-900 tracking-tight italic">Gestão de Coleta</h1>
-            <div class="flex items-center justify-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                <span id="dot" class="w-2.5 h-2.5 bg-amber-400 rounded-full animate-pulse shadow-sm"></span>
-                <span id="status_text">Aguardando Registro</span>
+        <!-- Header Inspirado na Referência (Ícone Central) -->
+        <div class="text-center pt-8 space-y-4">
+            <div class="recycling-icon animate-[spin_10s_linear_infinite]">
+                <i class="fa-solid fa-recycle"></i>
+            </div>
+            <div>
+                <h1 class="text-3xl font-black text-gray-900 tracking-tight">Gestão de Coleta</h1>
+                <div class="flex items-center justify-center gap-2 mt-1 text-[11px] font-bold text-green-600 uppercase tracking-widest">
+                    <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+                    Sistema Ativo
+                </div>
             </div>
         </div>
 
-        <!-- Formulário Centralizado -->
-        <div class="w-full bg-white p-6 rounded-[2.5rem] shadow-xl border border-slate-50 space-y-4">
-            <input type="text" id="equipe" placeholder="Equipe Responsável" class="w-full bg-slate-50 border-none shadow-inner">
-            <input type="text" id="produto" placeholder="Detalhe do Produto" class="w-full bg-slate-50 border-none shadow-inner">
+        <!-- Formulário (Estilo Clean White) -->
+        <div class="w-full space-y-4 pt-4">
+            <div class="space-y-1">
+                <label class="text-[10px] font-black text-gray-400 uppercase ml-3 tracking-widest">Equipe Responsável</label>
+                <input type="text" id="equipe" placeholder="👤 Nome da Equipe" class="ios-input">
+            </div>
             
-            <div class="grid grid-cols-2 gap-3">
-                <input type="number" id="peso" placeholder="Peso (kg)" class="w-full bg-slate-50 border-none text-emerald-700 font-black shadow-inner">
-                <select id="tipo" class="w-full bg-emerald-50 text-emerald-800 font-bold border-none shadow-sm cursor-pointer">
-                    <option value="Reciclável">♻️ Reciclável</option>
-                    <option value="Orgânico">🍎 Orgânico</option>
-                </select>
+            <div class="space-y-1">
+                <label class="text-[10px] font-black text-gray-400 uppercase ml-3 tracking-widest">Detalhe do Produto</label>
+                <input type="text" id="produto" placeholder="📦 O que foi coletado?" class="ios-input">
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-1">
+                    <label class="text-[10px] font-black text-gray-400 uppercase ml-3 tracking-widest">Peso (kg)</label>
+                    <input type="number" id="peso" placeholder="0.00" class="ios-input text-green-600 font-black">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] font-black text-gray-400 uppercase ml-3 tracking-widest">Tipo</label>
+                    <select id="tipo" class="ios-input bg-green-50 text-green-700 font-bold border-none appearance-none text-center">
+                        <option value="Reciclável">♻️ Reciclável</option>
+                        <option value="Orgânico">🍎 Orgânico</option>
+                    </select>
+                </div>
             </div>
         </div>
 
-        <!-- Painel de Ações (Botões Slim) -->
-        <div class="w-full space-y-3 px-1">
-            
-            <button onclick="registrar()" class="btn-slim bg-slate-900 text-white shadow-lg">
-                <i class="fa-solid fa-cloud-arrow-up text-sky-400 text-lg"></i>
-                Arquivar Registro (Auto-Hora)
+        <!-- Painel de Ações (Botões Arredondados) -->
+        <div class="w-full space-y-4 pt-4">
+            <button onclick="registrar()" class="btn-main">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                ARQUIVAR REGISTRO
             </button>
 
-            <div class="grid grid-cols-2 gap-3">
-                <button onclick="location.reload()" class="btn-slim bg-white border-slate-200 text-rose-500 hover:border-rose-300">
-                    <i class="fa-solid fa-trash-can text-base"></i> Resetar
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="location.reload()" class="h-[50px] bg-gray-100 text-gray-500 rounded-2xl font-bold flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-solid fa-rotate-left"></i> Limpar
                 </button>
-                <button onclick="alert('CSV baixado')" class="btn-slim bg-white border-slate-200 text-emerald-600 hover:border-emerald-300">
-                    <i class="fa-solid fa-file-csv text-base"></i> Baixar CSV
+                <button onclick="window.open('URL_DA_PLANILHA', '_blank')" class="h-[50px] bg-blue-50 text-blue-600 rounded-2xl font-bold flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-solid fa-table-list"></i> Planilha
                 </button>
             </div>
-
-            <button onclick="window.open('https://google.com', '_blank')" class="btn-slim bg-white border-sky-200 text-sky-500 text-[10px] font-black uppercase tracking-widest mt-2">
-                <i class="fa-solid fa-table-list text-base"></i> Acessar Planilha Google
-            </button>
         </div>
 
-        <!-- Histórico Automático -->
-        <div class="w-full pt-4">
-            <h3 class="text-center text-[10px] font-black text-slate-300 uppercase tracking-widest mb-4">Histórico de Coleta</h3>
-            <div id="historico" class="text-center py-10 text-slate-200 italic font-bold text-sm">
-                Nenhum registro arquivado hoje
+        <!-- Histórico (Estilo Card da Referência) -->
+        <div class="w-full pt-8 pb-10">
+            <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-4 ml-2">Histórico Hoje</h3>
+            <div id="historico" class="bg-gray-50 rounded-[2rem] p-6 text-center text-gray-300 italic font-bold text-sm">
+                Aguardando primeira postagem...
             </div>
         </div>
     </div>
@@ -78,33 +90,30 @@
         function registrar() {
             const agora = new Date();
             const hora = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-            
             const equipe = document.getElementById('equipe').value;
             const peso = document.getElementById('peso').value;
             const tipo = document.getElementById('tipo').value;
 
             if(!equipe || !peso) {
-                alert("⚠️ Preencha Equipe e Peso!");
+                alert("⚠️ Erro: Informe Equipe e Peso!");
                 return;
             }
 
-            document.getElementById('dot').classList.replace('bg-amber-400', 'bg-emerald-500');
-            document.getElementById('status_text').innerText = "Postado às " + hora;
-
             const hist = document.getElementById('historico');
-            if(hist.innerText.includes("Nenhum")) hist.innerHTML = "";
+            if(hist.innerText.includes("Aguardando")) hist.innerHTML = "";
             
             const item = `
-                <div class="w-full flex justify-between items-center py-4 border-b border-slate-50 text-slate-500 font-bold text-xs px-2 animate-in slide-in-from-top duration-300">
-                    <span class="text-slate-300 font-medium">${hora}</span>
-                    <span class="text-emerald-600 font-black tracking-tight uppercase">${tipo}</span>
-                    <span class="bg-emerald-50 px-2 py-1 rounded text-emerald-700">${peso}kg</span>
+                <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm mb-3 border border-gray-100 animate-in fade-in slide-in-from-top duration-500">
+                    <span class="text-[10px] text-gray-400 font-black">${hora}</span>
+                    <span class="text-green-600 font-extrabold uppercase text-xs">${tipo}</span>
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-black">${peso}kg</span>
                 </div>`;
             hist.innerHTML = item + hist.innerHTML;
             
             // Limpa campos para nova entrada
             document.getElementById('produto').value = '';
             document.getElementById('peso').value = '';
+            alert("✅ Postado com sucesso às " + hora);
         }
     </script>
 </body>
