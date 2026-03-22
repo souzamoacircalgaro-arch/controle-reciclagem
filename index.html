@@ -3,86 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gestão de Coleta Pro</title>
+    <title>Gestão de Coleta</title>
     <script src="https://tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        body { font-family: -apple-system, sans-serif; background-color: #f8fafc; }
-        /* Garante que o app ocupe a tela toda sem scroll lateral */
-        .app-container { width: 100%; max-width: 450px; margin: 0 auto; padding: 20px; }
-        /* Inputs com altura ideal para o toque (touch) */
-        input, select { height: 60px !important; border-radius: 16px !important; font-size: 1.1rem !important; text-align: center; border: 1px solid #e2e8f0 !important; }
-        input:focus { border-color: #10b981 !important; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1) !important; }
-        .btn-main { height: 65px; border-radius: 20px; font-size: 1.3rem; font-weight: 800; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.2s; }
-        .btn-main:active { transform: scale(0.96); }
+        body { font-family: -apple-system, sans-serif; background-color: #ffffff; color: #000; }
+        .ios-input { background: #f2f2f7; border-radius: 1rem; border: none; height: 55px; padding-left: 3rem; font-weight: 600; width: 100%; outline: none; }
+        .ios-input::placeholder { color: #a1a1aa; }
+        .btn-green { background: #22c55e; color: white; border-radius: 1.2rem; height: 60px; font-weight: 800; font-size: 1.2rem; width: 100%; transition: 0.2s; }
+        .btn-green:active { transform: scale(0.96); opacity: 0.9; }
+        .icon-container { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #a1a1aa; font-size: 1.2rem; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center">
+<body class="p-6">
 
-    <div class="app-container space-y-6 flex flex-col items-center">
+    <div class="max-w-md mx-auto space-y-6">
         
-        <!-- Cabeçalho Centralizado -->
-        <header class="text-center pt-4 space-y-2 w-full">
-            <h1 class="text-4xl font-black text-slate-900 tracking-tighter italic uppercase">Gestão de Coleta</h1>
-            <div class="flex items-center justify-center gap-2 text-[10px] font-black text-emerald-600 tracking-[0.2em]">
-                <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse shadow-md"></span>
-                SISTEMA ATIVO
-            </div>
+        <!-- Título -->
+        <header class="pt-4">
+            <h1 class="text-4xl font-black tracking-tight mb-2">Gestão de Coleta</h1>
+            <p class="text-sm font-bold text-gray-400 uppercase tracking-widest">Sistema Ativo</p>
         </header>
 
-        <!-- Formulário Responsivo -->
-        <main class="w-full bg-white p-6 rounded-[2.5rem] shadow-2xl border border-slate-50 space-y-4">
+        <!-- Formulário -->
+        <main class="space-y-4 pt-2">
             
-            <div class="space-y-1">
-                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-3">Equipe Responsável</label>
-                <input type="text" id="equipe" placeholder="👤 Nome da Equipe" class="w-full bg-slate-50 outline-none transition-all font-bold">
-            </div>
-
-            <div class="space-y-1">
-                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-3">Detalhe do Produto</label>
-                <input type="text" id="produto" placeholder="📦 O que foi coletado?" class="w-full bg-slate-50 outline-none transition-all">
-            </div>
-
-            <div class="grid grid-cols-2 gap-4 w-full">
-                <div class="space-y-1">
-                    <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-3">Peso (kg)</label>
-                    <input type="number" id="peso" placeholder="0.00" class="w-full bg-slate-50 outline-none text-emerald-700 font-black">
+            <div class="space-y-2">
+                <label class="text-xs font-black uppercase tracking-widest text-black ml-1">Equipe Responsável</label>
+                <div class="relative">
+                    <span class="icon-container"><i class="fa-solid fa-user"></i></span>
+                    <input type="text" id="equipe" placeholder="Nome da Equipe" class="ios-input">
                 </div>
-                <div class="space-y-1">
-                    <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-3">Tipo</label>
-                    <select id="tipo" class="w-full bg-emerald-50 text-emerald-800 font-bold border-none appearance-none cursor-pointer">
-                        <option value="Reciclável">♻️ Reciclável</option>
-                        <option value="Orgânico">🍎 Orgânico</option>
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-xs font-black uppercase tracking-widest text-black ml-1">Detalhe do Produto</label>
+                <div class="relative">
+                    <span class="icon-container"><i class="fa-solid fa-box"></i></span>
+                    <input type="text" id="produto" placeholder="O que foi coletado?" class="ios-input text-gray-400">
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-xs font-black uppercase tracking-widest text-black ml-1">Peso (kg)</label>
+                <input type="number" id="peso" placeholder="0.00" class="ios-input text-center pl-0 text-gray-400">
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-xs font-black uppercase tracking-widest text-black ml-1">Tipo</label>
+                <div class="relative">
+                    <span class="icon-container text-green-500"><i class="fa-solid fa-recycle"></i></span>
+                    <select id="tipo" class="ios-input appearance-none">
+                        <option value="Reciclável">Reciclável</option>
+                        <option value="Orgânico">Orgânico</option>
                     </select>
+                    <span class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <i class="fa-solid fa-chevron-up text-[10px] block"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] block"></i>
+                    </span>
                 </div>
             </div>
         </main>
 
-        <!-- Ações Principais -->
-        <div class="w-full space-y-4">
-            <button onclick="registrar()" class="btn-main bg-[#10b981] text-white shadow-xl shadow-emerald-100 uppercase">
-                <i class="fa-solid fa-cloud-arrow-up text-2xl"></i>
-                Arquivar Registro
-            </button>
+        <!-- Ação Principal -->
+        <button onclick="registrar()" class="btn-green uppercase shadow-lg">
+            Arquivar Registro
+        </button>
 
-            <!-- Botões Secundários em Grid -->
-            <div class="grid grid-cols-2 gap-4">
-                <button onclick="location.reload()" class="h-12 bg-white border border-slate-200 text-slate-400 rounded-2xl font-bold flex items-center justify-center gap-2 text-xs uppercase tracking-widest">
-                    <i class="fa-solid fa-rotate-left"></i> Limpar
-                </button>
-                <button onclick="window.open('URL_DA_PLANILHA', '_blank')" class="h-12 bg-sky-50 border border-sky-100 text-sky-600 rounded-2xl font-bold flex items-center justify-center gap-2 text-xs uppercase tracking-widest">
-                    <i class="fa-solid fa-table-list"></i> Planilha
-                </button>
-            </div>
+        <!-- Ações de Apoio -->
+        <div class="flex gap-4">
+            <button onclick="location.reload()" class="bg-gray-100 text-gray-500 px-4 py-2 rounded-lg font-bold text-xs">Limpar</button>
+            <button onclick="window.open('URL_DA_SUA_PLANILHA', '_blank')" class="bg-gray-100 text-gray-500 px-4 py-2 rounded-lg font-bold text-xs">Planilha</button>
         </div>
 
-        <!-- Histórico (Logs) -->
-        <section class="w-full pt-6 pb-10">
-            <h3 class="text-center text-[10px] font-black text-slate-300 uppercase tracking-[0.4em] mb-6">Logs de Postagem (Auto-Hora)</h3>
-            <div id="historico" class="space-y-3">
-                <div class="text-center py-10 text-slate-200 italic font-bold text-sm">Aguardando primeira coleta...</div>
+        <!-- Histórico -->
+        <section class="pt-6">
+            <h3 class="text-2xl font-black mb-4">Histórico Hoje</h3>
+            <div id="historico" class="text-gray-400 font-bold italic py-4">
+                Aguardando primeira postagem...
             </div>
         </section>
+
     </div>
 
     <script>
@@ -93,26 +94,25 @@
             const peso = document.getElementById('peso').value;
             const tipo = document.getElementById('tipo').value;
 
-            if(!equipe || !peso) { alert("⚠️ Informe Equipe e Peso!"); return; }
+            if(!equipe || !peso) { alert("⚠️ Preencha Equipe e Peso!"); return; }
 
             const hist = document.getElementById('historico');
             if(hist.innerText.includes("Aguardando")) hist.innerHTML = "";
             
             const item = `
-                <div class="flex justify-between items-center bg-white p-5 rounded-2xl shadow-sm border border-slate-100 animate-in fade-in slide-in-from-top duration-500">
+                <div class="flex justify-between items-center py-4 border-b border-gray-100 animate-in fade-in slide-in-from-top duration-500">
                     <div class="flex flex-col">
-                        <span class="text-[10px] text-slate-300 font-black uppercase">${hora}</span>
-                        <span class="text-slate-700 font-extrabold text-xs uppercase">${equipe}</span>
+                        <span class="text-[10px] text-gray-300 font-black uppercase tracking-tighter">${hora}</span>
+                        <span class="font-black text-black text-sm">${equipe}</span>
                     </div>
-                    <span class="text-emerald-600 font-black text-[10px] uppercase bg-emerald-50 px-3 py-1 rounded-full">${tipo}</span>
-                    <span class="text-slate-900 font-black text-base">${peso}kg</span>
+                    <span class="text-green-500 font-black text-xs uppercase">${tipo}</span>
+                    <span class="font-black text-black">${peso}kg</span>
                 </div>`;
             hist.innerHTML = item + hist.innerHTML;
             
-            // Limpa campos dinâmicos
             document.getElementById('produto').value = '';
             document.getElementById('peso').value = '';
-            alert("✅ Registro arquivado com sucesso às " + hora);
+            alert("✅ Registro Automático: " + hora);
         }
     </script>
 </body>
