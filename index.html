@@ -3,83 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Coleta Pro</title>
-    <!-- Framework de Estilo e Ícones -->
+    <title>Coleta Pro Max</title>
     <script src="https://tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        body { font-family: -apple-system, sans-serif; background-color: #f8f9fa; }
-        .btn-icon { display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; transition: 0.2s; }
-        .btn-icon:active { transform: scale(0.98); }
+        body { font-family: -apple-system, sans-serif; background-color: #f9fafb; }
+        /* Tamanho extra para ícones e textos */
+        .icon-lg { font-size: 1.6rem !important; }
+        .text-input-lg { font-size: 1.2rem !important; font-weight: 600; }
+        .btn-xl { padding: 1.2rem !important; font-size: 1.3rem !important; border-radius: 1.5rem; }
     </style>
 </head>
-<body class="p-4">
+<body class="p-5">
 
-    <div class="max-w-md mx-auto space-y-6">
+    <div class="max-w-md mx-auto space-y-8">
         
-        <!-- Cabeçalho de Status (Estilo o que você enviou) -->
-        <div class="text-center space-y-2 py-4">
-            <h2 class="text-2xl font-extrabold text-gray-800">Gestão de Coleta</h2>
-            <div class="flex items-center justify-center gap-2 text-sm font-medium text-gray-500">
-                <span class="w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></span>
+        <!-- Status com Letra Maior -->
+        <div class="text-center space-y-3 py-6">
+            <h2 class="text-3xl font-black text-gray-900 tracking-tight italic">Gestão de Coleta</h2>
+            <div class="flex items-center justify-center gap-3 text-lg font-bold text-gray-500">
+                <span class="w-4 h-4 bg-yellow-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(250,204,21,0.8)]"></span>
                 aguardando sincronização
             </div>
         </div>
 
-        <!-- Formulário de Entrada -->
-        <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 space-y-4">
-            <input type="text" id="equipe" placeholder="👤 Equipe Responsável" class="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-green-500">
-            <input type="text" id="produto" placeholder="📦 Detalhe do Produto" class="w-full p-4 bg-gray-50 rounded-2xl border-none outline-none focus:ring-2 focus:ring-green-500">
+        <!-- Formulário com Inputs Grandes -->
+        <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100 space-y-6">
+            <div class="relative">
+                <i class="fa-solid fa-user icon-lg absolute left-5 top-5 text-gray-300"></i>
+                <input type="text" id="equipe" placeholder="Equipe Responsável" 
+                       class="w-full p-5 pl-16 bg-gray-50 rounded-2xl border-none outline-none focus:ring-4 focus:ring-green-500 text-input-lg text-gray-800 shadow-inner">
+            </div>
+
+            <div class="relative">
+                <i class="fa-solid fa-box icon-lg absolute left-5 top-5 text-gray-300"></i>
+                <input type="text" id="produto" placeholder="Detalhe do Produto" 
+                       class="w-full p-5 pl-16 bg-gray-50 rounded-2xl border-none outline-none focus:ring-4 focus:ring-green-500 text-input-lg text-gray-800 shadow-inner">
+            </div>
             
-            <div class="grid grid-cols-2 gap-3">
-                <input type="number" id="peso" placeholder="⚖️ Peso (kg)" class="p-4 bg-gray-50 rounded-2xl border-none outline-none">
-                <select id="tipo" class="p-4 bg-green-50 text-green-700 font-bold rounded-2xl border-none outline-none">
-                    <option value="Reciclável">♻️ Reciclável</option>
-                    <option value="Orgânico">🍎 Orgânico</option>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="relative">
+                    <i class="fa-solid fa-weight-hanging icon-lg absolute left-5 top-5 text-gray-300"></i>
+                    <input type="number" id="peso" placeholder="kg" 
+                           class="w-full p-5 pl-16 bg-gray-50 rounded-2xl border-none outline-none text-input-lg font-black text-green-700 shadow-inner">
+                </div>
+                <select id="tipo" class="p-5 bg-green-100 text-green-800 font-black rounded-2xl border-none outline-none text-xl appearance-none shadow-sm text-center">
+                    <option value="Reciclável">♻️ Recicla</option>
+                    <option value="Orgânico">🍎 Orgân</option>
                 </select>
             </div>
         </div>
 
-        <!-- Bloco de Botões (Idêntico à sua referência) -->
-        <div class="space-y-3">
+        <!-- Bloco de Botões com Fontes Gigantes -->
+        <div class="space-y-4">
             
-            <!-- Botão Principal de Registro -->
-            <button onclick="registrar()" class="btn-icon w-full p-4 bg-[#0f172a] text-white rounded-2xl shadow-lg">
-                <i class="fa-solid fa-cloud-arrow-up text-blue-400"></i> Registrar Coleta do Dia
+            <button onclick="registrar()" class="btn-xl w-full flex items-center justify-center gap-4 bg-[#0f172a] text-white shadow-2xl active:scale-95 transition-all">
+                <i class="fa-solid fa-cloud-arrow-up icon-lg text-blue-400"></i> 
+                <span>Arquivar Registro do Dia</span>
             </button>
 
-            <!-- Botão de Ajuste -->
-            <button class="btn-icon w-full p-4 bg-[#ff9f1c] text-white rounded-2xl shadow-md">
-                <i class="fa-solid fa-pen-fancy"></i> Ajustar Detalhes
+            <button class="btn-xl w-full flex items-center justify-center gap-4 bg-[#ff9f1c] text-white shadow-lg active:scale-95 transition-all font-black">
+                <i class="fa-solid fa-clock-rotate-left icon-lg"></i> 
+                <span>Ajustar Horário</span>
             </button>
 
-            <!-- Linha de Botões Secundários -->
-            <div class="grid grid-cols-2 gap-3">
-                <button class="btn-icon p-3 bg-white border border-red-500 text-red-500 rounded-2xl">
-                    <i class="fa-solid fa-trash-can"></i> Resetar Dia
+            <div class="grid grid-cols-2 gap-4">
+                <button class="btn-xl flex items-center justify-center gap-3 bg-white border-4 border-red-500 text-red-500 font-black active:scale-95 transition-all">
+                    <i class="fa-solid fa-trash-can text-2xl"></i> Resetar
                 </button>
-                <button class="btn-icon p-3 bg-white border border-green-600 text-green-600 rounded-2xl">
-                    <i class="fa-solid fa-file-csv"></i> Baixar CSV
+                <button class="btn-xl flex items-center justify-center gap-3 bg-white border-4 border-green-600 text-green-600 font-black active:scale-95 transition-all">
+                    <i class="fa-solid fa-file-csv text-2xl"></i> CSV
                 </button>
             </div>
 
-            <!-- Botão Planilha -->
-            <button class="btn-icon w-full p-3 bg-white border border-blue-400 text-blue-500 rounded-2xl text-sm">
-                <i class="fa-solid fa-table-list"></i> Abrir Planilha Google
+            <button class="btn-xl w-full flex items-center justify-center gap-4 bg-white border-2 border-blue-400 text-blue-500 font-bold text-lg rounded-3xl mt-4">
+                <i class="fa-solid fa-table-list icon-lg"></i> Abrir Planilha Google
             </button>
         </div>
 
-        <!-- Histórico (Estilo Tabela da Imagem) -->
-        <div class="pt-6 space-y-4">
-            <h3 class="text-xl font-bold text-gray-800">Histórico Recente</h3>
-            <div class="grid grid-cols-3 text-center text-xs font-bold text-gray-400 uppercase tracking-widest pb-2 border-b">
+        <!-- Histórico Grande -->
+        <div class="pt-8 pb-10 space-y-6">
+            <h3 class="text-2xl font-black text-gray-800 border-l-8 border-green-500 pl-4">Histórico Recente</h3>
+            <div class="grid grid-cols-3 text-center text-sm font-black text-gray-400 uppercase tracking-widest pb-4 border-b-2">
                 <span>Data</span>
-                <span>Tipo</span>
-                <span>Peso</span>
+                <span>Entrada</span>
+                <span>Saída</span>
             </div>
-            <div id="historico" class="space-y-3 text-sm text-gray-600">
-                <!-- Dados entrarão aqui -->
-                <div class="text-center py-4 text-gray-300 italic">Nenhum registro hoje</div>
+            <div id="historico" class="space-y-4 text-center py-10 text-gray-300 italic text-xl font-medium">
+                Nenhum registro hoje
             </div>
         </div>
 
@@ -89,7 +100,7 @@
         function registrar() {
             const status = document.querySelector('.animate-pulse');
             status.classList.replace('bg-yellow-400', 'bg-green-500');
-            alert("Coleta sincronizada com sucesso!");
+            alert("✅ COLETA REGISTRADA COM SUCESSO!");
         }
     </script>
 </body>
