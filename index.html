@@ -1,118 +1,125 @@
-<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Gestão de Coleta</title>
-    <script src="https://tailwindcss.com"></script>
+    <!-- Substituído CDN pesado por Tailwind Play (apenas para demo) e FontAwesome corrigido -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
-    <style>
-        body { font-family: -apple-system, sans-serif; background-color: #ffffff; color: #000; }
-        .ios-input { background: #f2f2f7; border-radius: 1rem; border: none; height: 55px; padding-left: 3rem; font-weight: 600; width: 100%; outline: none; }
-        .ios-input::placeholder { color: #a1a1aa; }
-        .btn-green { background: #22c55e; color: white; border-radius: 1.2rem; height: 60px; font-weight: 800; font-size: 1.2rem; width: 100%; transition: 0.2s; }
-        .btn-green:active { transform: scale(0.96); opacity: 0.9; }
-        .icon-container { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #a1a1aa; font-size: 1.2rem; }
+    
+    <style type="text/tailwindcss">
+        @layer components {
+            .ios-input { @apply bg-[#f2f2f7] rounded-2xl h-[55px] pl-12 font-semibold w-full outline-none focus:ring-2 ring-green-500 transition-all; }
+            .btn-green { @apply bg-[#22c55e] text-white rounded-3xl h-[60px] font-extrabold text-lg w-full active:scale-95 active:opacity-90 transition-all shadow-lg; }
+            .icon-container { @apply absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg; }
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
     </style>
 </head>
-<body class="p-6">
+<body class="p-6 bg-white text-black">
 
     <div class="max-w-md mx-auto space-y-6">
-        
-        <!-- Título -->
         <header class="pt-4">
-            <h1 class="text-4xl font-black tracking-tight mb-2">Gestão de Coleta</h1>
+            <h1 class="text-4xl font-black tracking-tight">Gestão de Coleta</h1>
             <p class="text-sm font-bold text-gray-400 uppercase tracking-widest">Sistema Ativo</p>
         </header>
 
-        <!-- Formulário -->
-        <main class="space-y-4 pt-2">
-            
-            <div class="space-y-2">
-                <label class="text-xs font-black uppercase tracking-widest text-black ml-1">Equipe Responsável</label>
+        <form id="formColeta" class="space-y-4" onsubmit="event.preventDefault(); registrar();">
+            <div class="space-y-1">
+                <label for="equipe" class="text-[10px] font-black uppercase tracking-widest ml-1">Equipe Responsável</label>
                 <div class="relative">
                     <span class="icon-container"><i class="fa-solid fa-user"></i></span>
-                    <input type="text" id="equipe" placeholder="Nome da Equipe" class="ios-input">
+                    <input type="text" id="equipe" placeholder="Nome da Equipe" class="ios-input" required>
                 </div>
             </div>
 
-            <div class="space-y-2">
-                <label class="text-xs font-black uppercase tracking-widest text-black ml-1">Detalhe do Produto</label>
+            <div class="space-y-1">
+                <label for="produto" class="text-[10px] font-black uppercase tracking-widest ml-1">Detalhe do Produto</label>
                 <div class="relative">
                     <span class="icon-container"><i class="fa-solid fa-box"></i></span>
-                    <input type="text" id="produto" placeholder="O que foi coletado?" class="ios-input text-gray-400">
+                    <input type="text" id="produto" placeholder="O que foi coletado?" class="ios-input">
                 </div>
             </div>
 
-            <div class="space-y-2">
-                <label class="text-xs font-black uppercase tracking-widest text-black ml-1">Peso (kg)</label>
-                <input type="number" id="peso" placeholder="0.00" class="ios-input text-center pl-0 text-gray-400">
-            </div>
-
-            <div class="space-y-2">
-                <label class="text-xs font-black uppercase tracking-widest text-black ml-1">Tipo</label>
-                <div class="relative">
-                    <span class="icon-container text-green-500"><i class="fa-solid fa-recycle"></i></span>
-                    <select id="tipo" class="ios-input appearance-none">
-                        <option value="Reciclável">Reciclável</option>
-                        <option value="Orgânico">Orgânico</option>
-                    </select>
-                    <span class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                        <i class="fa-solid fa-chevron-up text-[10px] block"></i>
-                        <i class="fa-solid fa-chevron-down text-[10px] block"></i>
-                    </span>
+            <div class="flex gap-4">
+                <div class="flex-1 space-y-1">
+                    <label for="peso" class="text-[10px] font-black uppercase tracking-widest ml-1">Peso (kg)</label>
+                    <input type="number" id="peso" step="0.01" placeholder="0.00" class="ios-input text-center pl-0" required>
+                </div>
+                <div class="flex-1 space-y-1">
+                    <label for="tipo" class="text-[10px] font-black uppercase tracking-widest ml-1">Tipo</label>
+                    <div class="relative">
+                        <select id="tipo" class="ios-input appearance-none pl-4">
+                            <option value="Reciclável">Reciclável</option>
+                            <option value="Orgânico">Orgânico</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </main>
 
-        <!-- Ação Principal -->
-        <button onclick="registrar()" class="btn-green uppercase shadow-lg">
-            Arquivar Registro
-        </button>
+            <button type="submit" class="btn-green uppercase mt-4">Arquivar Registro</button>
+        </form>
 
-        <!-- Ações de Apoio -->
-        <div class="flex gap-4">
-            <button onclick="location.reload()" class="bg-gray-100 text-gray-500 px-4 py-2 rounded-lg font-bold text-xs">Limpar</button>
-            <button onclick="window.open('URL_DA_SUA_PLANILHA', '_blank')" class="bg-gray-100 text-gray-500 px-4 py-2 rounded-lg font-bold text-xs">Planilha</button>
+        <div class="flex gap-2">
+            <button onclick="limparHistorico()" class="bg-gray-100 text-gray-500 px-4 py-2 rounded-xl font-bold text-xs flex-1">Limpar Tudo</button>
+            <button onclick="window.open('#', '_blank')" class="bg-gray-100 text-gray-500 px-4 py-2 rounded-xl font-bold text-xs flex-1">Ver Planilha</button>
         </div>
 
-        <!-- Histórico -->
         <section class="pt-6">
             <h3 class="text-2xl font-black mb-4">Histórico Hoje</h3>
-            <div id="historico" class="text-gray-400 font-bold italic py-4">
+            <div id="historico" class="space-y-0 text-gray-400 font-medium italic">
                 Aguardando primeira postagem...
             </div>
         </section>
-
     </div>
 
     <script>
+        // Carregar dados ao abrir
+        window.onload = () => {
+            const salvo = localStorage.getItem('historico_coleta');
+            if(salvo) {
+                document.getElementById('historico').innerHTML = salvo;
+                document.getElementById('historico').classList.remove('italic');
+            }
+        };
+
         function registrar() {
-            const agora = new Date();
-            const hora = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
             const equipe = document.getElementById('equipe').value;
             const peso = document.getElementById('peso').value;
             const tipo = document.getElementById('tipo').value;
-
-            if(!equipe || !peso) { alert("⚠️ Preencha Equipe e Peso!"); return; }
+            const hora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 
             const hist = document.getElementById('historico');
-            if(hist.innerText.includes("Aguardando")) hist.innerHTML = "";
+            if(hist.innerText.includes("Aguardando")) {
+                hist.innerHTML = "";
+                hist.classList.remove('italic');
+            }
             
-            const item = `
-                <div class="flex justify-between items-center py-4 border-b border-gray-100 animate-in fade-in slide-in-from-top duration-500">
+            const novoItem = `
+                <div class="flex justify-between items-center py-4 border-b border-gray-100 transition-all">
                     <div class="flex flex-col">
-                        <span class="text-[10px] text-gray-300 font-black uppercase tracking-tighter">${hora}</span>
-                        <span class="font-black text-black text-sm">${equipe}</span>
+                        <span class="text-[10px] text-gray-400 font-bold uppercase">${hora}</span>
+                        <span class="font-bold text-black">${equipe}</span>
                     </div>
-                    <span class="text-green-500 font-black text-xs uppercase">${tipo}</span>
-                    <span class="font-black text-black">${peso}kg</span>
+                    <div class="text-right">
+                        <span class="block text-[10px] font-black ${tipo === 'Reciclável' ? 'text-green-500' : 'text-orange-500'} uppercase">${tipo}</span>
+                        <span class="font-black text-black">${peso}kg</span>
+                    </div>
                 </div>`;
-            hist.innerHTML = item + hist.innerHTML;
             
-            document.getElementById('produto').value = '';
+            hist.innerHTML = novoItem + hist.innerHTML;
+            localStorage.setItem('historico_coleta', hist.innerHTML);
+
+            // Reset campos específicos
             document.getElementById('peso').value = '';
-            alert("✅ Registro Automático: " + hora);
+            document.getElementById('produto').value = '';
+        }
+
+        function limparHistorico() {
+            if(confirm("Deseja apagar o histórico local?")) {
+                localStorage.removeItem('historico_coleta');
+                location.reload();
+            }
         }
     </script>
 </body>
